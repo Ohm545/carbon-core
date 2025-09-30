@@ -441,7 +441,7 @@ def get_dashboard_summary():
         'success': True,
         'data': {
             'section_info': {
-                'name': 'NDLS → AGC Section',
+                'name': 'GT → GTK Section',
                 'data_source': 'RailRadar Live API',
                 'last_updated': datetime.now().isoformat()
             },
