@@ -12,14 +12,11 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-# API Configuration
 RAILRADAR_API_KEY = os.getenv("rr_api_key")
 GEMINI_API_KEY = os.getenv("g_api_key")
 
-# Target stations to monitor
 TARGET_STATIONS = ["PMD", "TIM", "RRJ", "PLU"]
 
-# 32 Trains data
 TRAINS_ARRAY = {
   "count": 32,
   "trains": [
@@ -667,13 +664,27 @@ def get_system_status():
         'timestamp': datetime.now().isoformat()
     })
 
+# Health check endpoint for Render
+@app.route('/health')
+def health_check():
+    return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
+
+# Simple test endpoint
+@app.route('/api/test')
+def test_api():
+    return jsonify({
+        "success": True,
+        "message": "API is working!",
+        "timestamp": datetime.now().isoformat()
+    })
+
 if __name__ == '__main__':
     # Create static directory if it doesn't exist
     os.makedirs('static', exist_ok=True)
     
     print("🚀 Starting VyuhMitra Backend Server...")
-    print("📊 Dashboard available at: http://127.0.0.1:5000")
-    print("🔗 API endpoints available at: http://127.0.0.1:5000/api/")
+    print("📊 Dashboard available at: http://127.0.0.1:10000")
+    print("🔗 API endpoints available at: http://127.0.0.1:10000/api/")
     print("⏸️  Data processing is stopped initially. Use the start button to begin.")
-    port = int(os.getenv("PORT", 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    port = int(os.getenv("PORT", 10000))
+    app.run(debug=False, host='0.0.0.0', port=port)
