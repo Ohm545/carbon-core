@@ -1372,7 +1372,7 @@
         
         // Data Processing Control Functions
         function startDataProcessing() {
-            fetch('/api/control/start', { method: 'POST' })
+            fetch('https://carbon-core-1.onrender.com/api/control/start', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1396,7 +1396,7 @@
         }
 
         function stopDataProcessing() {
-            fetch('/api/control/stop', { method: 'POST' })
+            fetch('https://carbon-core-1.onrender.com/api/control/stop', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1420,7 +1420,7 @@
         }
 
         function checkProcessingStatus() {
-            fetch('/api/control/status')
+            fetch('https://carbon-core-1.onrender.com/api/control/status')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1536,7 +1536,7 @@
         // Load KPI data
         async function loadKPIs() {
             try {
-                const response = await fetch('/api/kpi/current');
+                const response = await fetch('https://carbon-core-1.onrender.com/api/kpi/current');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1563,7 +1563,7 @@
         // Load trains table data
         async function loadTrainsTable() {
             try {
-                const response = await fetch('/api/trains/table-data');
+                const response = await fetch('https://carbon-core-1.onrender.com/api/trains/table-data');
                 const data = await response.json();
                 
                 const tableBody = document.getElementById('trains-table-body');
@@ -1619,7 +1619,7 @@
         // Load conflicts
         async function loadConflicts() {
             try {
-                const response = await fetch('/api/abnormalities');
+                const response = await fetch('https://carbon-core-1.onrender.com/api/abnormalities');
                 const data = await response.json();
                 
                 const conflictsList = document.getElementById('conflicts-list');
@@ -1648,7 +1648,7 @@
         // Load solutions
         async function loadSolutions() {
             try {
-                const response = await fetch('/api/solutions/active');
+                const response = await fetch('https://carbon-core-1.onrender.com/api/solutions/active');
                 const data = await response.json();
                 
                 const solutionsList = document.getElementById('recommendations-list');
@@ -1684,7 +1684,7 @@
         // Load system status
         async function loadSystemStatus() {
             try {
-                const response = await fetch('/api/system/status');
+                const response = await fetch('https://carbon-core-1.onrender.com/api/system/status');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1708,7 +1708,7 @@
             }
             
             try {
-                const response = await fetch('/api/solutions/generate', {
+                const response = await fetch('https://carbon-core-1.onrender.com/api/solutions/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
