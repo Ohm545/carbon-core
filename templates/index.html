@@ -247,6 +247,7 @@
             flex-direction: column;
             overflow: hidden;
             transition: all 0.2s;
+            overflow-y: auto;
         }
 
         .panel:hover {
@@ -279,6 +280,7 @@
         .ai-suggestions {
             grid-column: 2 / 3;
             grid-row: 1 / 2;
+            overflow-y: auto;
         }
 
         .scenario-simulator {
@@ -452,7 +454,6 @@
         .recommendations {
             padding: 12px 16px;
             border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-            overflow-y: auto;
         }
 
         .conflict-detection h3,
@@ -1373,7 +1374,7 @@
         
         // Data Processing Control Functions
         function startDataProcessing() {
-            fetch('/api/control/start', { method: 'POST' })
+            fetch('api/control/start', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1397,7 +1398,7 @@
         }
 
         function stopDataProcessing() {
-            fetch('/api/control/stop', { method: 'POST' })
+            fetch('api/control/stop', { method: 'POST' })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1421,7 +1422,7 @@
         }
 
         function checkProcessingStatus() {
-            fetch('/api/control/status')
+            fetch('api/control/status')
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -1537,7 +1538,7 @@
         // Load KPI data
         async function loadKPIs() {
             try {
-                const response = await fetch('/api/kpi/current');
+                const response = await fetch('api/kpi/current');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1564,7 +1565,7 @@
         // Load trains table data
         async function loadTrainsTable() {
             try {
-                const response = await fetch('/api/trains/table-data');
+                const response = await fetch('api/trains/table-data');
                 const data = await response.json();
                 
                 const tableBody = document.getElementById('trains-table-body');
@@ -1620,7 +1621,7 @@
         // Load conflicts
         async function loadConflicts() {
             try {
-                const response = await fetch('/api/abnormalities');
+                const response = await fetch('api/abnormalities');
                 const data = await response.json();
                 
                 const conflictsList = document.getElementById('conflicts-list');
@@ -1649,7 +1650,7 @@
         // Load solutions
         async function loadSolutions() {
             try {
-                const response = await fetch('/api/solutions/active');
+                const response = await fetch('api/solutions/active');
                 const data = await response.json();
                 
                 const solutionsList = document.getElementById('recommendations-list');
@@ -1685,7 +1686,7 @@
         // Load system status
         async function loadSystemStatus() {
             try {
-                const response = await fetch('/api/system/status');
+                const response = await fetch('api/system/status');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -1709,7 +1710,7 @@
             }
             
             try {
-                const response = await fetch('/api/solutions/generate', {
+                const response = await fetch('api/solutions/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
